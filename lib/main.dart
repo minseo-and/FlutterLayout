@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frame/application/counter_bloc.dart';
+import 'package:frame/application/string/string_change_bloc.dart';
+import 'package:frame/application/int/int_change_bloc.dart';
+import 'package:frame/presentaion/pages/change_screen.dart';
 import 'package:frame/presentaion/pages/counter_screen.dart';
 
 void main() {
@@ -34,9 +36,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BlocProvider(
-        create: (_) => CounterBloc(),
-        child: const CounterScreen(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => IntCounterBloc()),
+          BlocProvider(create: (_) => StringChangeBloc()),
+        ],
+
+        child: const ChangeScreen(),
       )
     );
   }
