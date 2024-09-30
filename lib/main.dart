@@ -4,6 +4,11 @@ import 'package:frame/application/string/string_change_bloc.dart';
 import 'package:frame/application/int/int_change_bloc.dart';
 import 'package:frame/presentaion/pages/change_screen.dart';
 import 'package:frame/presentaion/pages/counter_screen.dart';
+import 'package:frame/presentaion/pages/ev_station_screen.dart';
+import 'package:frame/repository/retrofit/ApiClient.dart';
+
+import 'application/evStation/ev_station_bloc.dart';
+import 'application/evStation/ev_station_event.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,9 +45,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => IntCounterBloc()),
           BlocProvider(create: (_) => StringChangeBloc()),
+          BlocProvider(create: (context) => EVStationBloc(ApiClient())..add(FetchEVStations("")),)
         ],
 
-        child: const ChangeScreen(),
+        child: EVStationScreen(),
       )
     );
   }

@@ -20,3 +20,4 @@ abstract class ApiService {
   @DELETE("{url}")
   Future<Response> deleteRequest(@Path("url") String url);
 }
+
