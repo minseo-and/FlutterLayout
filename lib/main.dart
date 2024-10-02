@@ -1,11 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frame/application/review_bloc.dart';
 import 'package:frame/application/string/string_change_bloc.dart';
 import 'package:frame/application/int/int_change_bloc.dart';
 import 'package:frame/presentaion/pages/change_screen.dart';
 import 'package:frame/presentaion/pages/counter_screen.dart';
+import 'package:frame/presentaion/pages/home_page.dart';
+import 'package:frame/presentaion/pages/register/sign_in_page.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -40,9 +50,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => IntCounterBloc()),
           BlocProvider(create: (_) => StringChangeBloc()),
+          BlocProvider(create: (_) => ReviewBloc())
         ],
 
-        child: const ChangeScreen(),
+        child: SignInPage(),
       )
     );
   }
