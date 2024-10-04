@@ -1,18 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:frame/application/review_bloc.dart';
 import 'package:frame/application/string/string_change_bloc.dart';
 import 'package:frame/application/int/int_change_bloc.dart';
 import 'package:frame/presentaion/pages/change_screen.dart';
 import 'package:frame/presentaion/pages/counter_screen.dart';
-import 'package:frame/presentaion/pages/home_page.dart';
+import 'package:frame/presentaion/pages/naver_map_screen.dart';
 import 'package:frame/presentaion/pages/register/sign_in_page.dart';
 
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NaverMapSdk.instance.initialize(clientId: "yzgy81o0c6");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => ReviewBloc())
         ],
 
-        child: SignInPage(),
+        child: NaverMapScreen(),
       )
     );
   }

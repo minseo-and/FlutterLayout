@@ -13,11 +13,13 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            TitleComponent(title: title, backButton: backButton,),
-            child
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TitleComponent(title: title, backButton: backButton,),
+              child
+            ],
+          ),
         ),
       ),
     );
